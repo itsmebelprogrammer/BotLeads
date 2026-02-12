@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtualenv
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+
+# Selenium / runtime
+chrome_profile_temp/
+
+# Outputs
+output/
+
+# OS
+Thumbs.db
+Desktop.ini
