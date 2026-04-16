@@ -1,99 +1,66 @@
-
 # BotLeads (CLI)
 
-Coletor **MVP** (minimal) de leads do **Google Maps** usando **Selenium**, com export para **CSV/XLSX**.
+Minimal MVP CLI tool to extract business leads from **Google Maps** using **Selenium**, with export to **CSV/XLSX**.
 
-A ideia é simples e fácil de entender: ele coleta somente **Nome**, **Telefone** (quando disponível) e **Site** (quando disponível), e gera um link `wa.me` para facilitar o contato via WhatsApp.
+The idea is simple: it collects **Name**, **Phone** (best-effort), **Website** (best-effort), and generates a **WhatsApp link** (`wa.me`) based on the normalized phone number.
 
-## Funcionalidades
+---
 
-- Busca no Google Maps por um termo (ex.: `"pizzaria Curitiba"`)
-- Coleta os campos:
-  - Nome
-  - Telefone (best-effort)
-  - Site (best-effort)
-  - Link do WhatsApp (`wa.me`) baseado no telefone normalizado
-- Exporta para:
-  - CSV (padrão)
-  - XLSX (opcional)
+## Features
 
+- Searches Google Maps by term (e.g.: `"pizzaria Curitiba"`)
+- Collects the following fields:
+  - Name
+  - Phone (best-effort)
+  - Website (best-effort)
+  - WhatsApp link (`wa.me`) based on normalized phone
+- Exports to:
+  - CSV (default)
+  - XLSX (optional)
 
-## Requisitos
+---
 
-- Python \( \ge 3.x \)
-- Google Chrome instalado
+## Requirements
 
-## Instalação
+- Python 3.x or higher
+- Google Chrome installed
 
-1) Crie e ative um ambiente virtual:
+---
+
+## Installation
+
+1) Create and activate a virtual environment:
 
 ```bash
 python -m venv .venv
+source .venv/bin/activate  # Linux/Mac
+# .venv\Scripts\activate   # Windows
 ```
 
-Windows (PowerShell):
-
-```powershell
-.\.venv\Scripts\Activate.ps1
-```
-
-Linux/macOS:
-
-```bash
-source .venv/bin/activate
-```
-
-2) Instale as dependências:
+2) Install dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Como usar (CLI)
+---
 
-Exemplo (Chrome invisível):
-
-```bash
-python main.py --q "pizzaria Curitiba" --n 30 --fmt csv --headless
-```
-
-Exemplo (Chrome visível):
+## Usage
 
 ```bash
-python main.py --q "advocacia Londrina" --n 20 --fmt xlsx --no-headless
+python main.py
 ```
 
-### Parâmetros
-
-- `--q` / `--query`: termo de busca (obrigatório)
-- `--n` / `--limit`: quantidade de leads (padrão: `30`)
-- `--fmt`: `csv` ou `xlsx` (padrão: `csv`)
-- `--headless`: roda sem abrir janela
-- `--no-headless`: força rodar com janela
-- `--delay`: atraso entre cliques (padrão: `0.3`)
-
-## Saída
-
-Os arquivos são criados na pasta `output/` com timestamp:
-
-- `output/leads_YYYYMMDD_HHMMSS.csv`
-- `output/leads_YYYYMMDD_HHMMSS.xlsx`
-
-## Notas técnicas
-
-- O Google Maps muda com frequência; seletores podem quebrar e exigir ajustes no `maps_scraper.py`.
-- Use com moderação para evitar bloqueios/limites.
-
-## Contribuições
-
-PRs são bem-vindos, especialmente para:
-
-- Melhorar a robustez dos seletores do Maps
-- Melhorar normalização de telefone e URL
-- Adicionar mais campos opcionais (ex.: categoria)
-
-## Aviso
-
-Este projeto é para fins educacionais e de automação interna. Você é responsável por respeitar os termos de uso do Google e a legislação aplicável ao coletar e usar dados de contato.
+The CLI will prompt you for the search term and number of results.
 
 ---
+
+## Output
+
+The generated file will be saved in the project root with the name `leads.csv` (or `leads.xlsx` if XLSX export is enabled).
+
+---
+
+## License
+
+This project is open source and available for study and portfolio purposes.
